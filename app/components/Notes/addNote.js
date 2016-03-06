@@ -5,7 +5,9 @@ export default class AddNote extends React.Component{
   //   super(props);
   // }
 
-  setRef(ref) => this.note = ref;
+  setRef(ref){
+    this.note = ref;
+  }
 
   handleSubmit(){
     const newNote = this.note.value;
