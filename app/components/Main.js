@@ -1,8 +1,8 @@
-var React = require('react');
-var SearchGithub = require('./SearchGithub')
+import React from 'react';
+const SearchGithub = require('./SearchGithub');
 
-var Main = React.createClass({
-  render: function(){
+export default class Main extends React.Component{
+  render(){
     return (
       <div className="main-container">
         <nav className="navbar navbar-default" role="navigation">
@@ -16,6 +16,4 @@ var Main = React.createClass({
       </div>
     )
   }
-});
-
-module.exports = Main;
+}

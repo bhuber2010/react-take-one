@@ -1,13 +1,13 @@
-var React = require('react');
-var Router = require('react-router');
+import React from 'react';
+import Router from 'react-router';
 var Repos = require('./Github/Repos');
 var UserProfile = require('./Github/UserProfile');
-var Notes = require('./Notes/Notes');
-var ReactFireMixin = require('reactfire');
-var Firebase = require('firebase');
+import Notes from './Notes/Notes';
+import ReactFireMixin from 'reactfire';
+import Firebase from 'firebase';
 import getGithubInfo from '../utils/helpers';
 
-var Profile = React.createClass({
+const Profile = React.createClass({
   mixins: [ReactFireMixin],
   getInitialState: function(){
     return {
@@ -27,7 +27,7 @@ var Profile = React.createClass({
   componentWillUnmount: function(){
     this.unbind('notes');
   },
-  init: function(username){
+  init: function(username) {
     var childRef = this.ref.child(username);
     this.bindAsArray(childRef, 'notes');
 

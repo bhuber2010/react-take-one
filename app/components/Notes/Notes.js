@@ -1,15 +1,10 @@
-var React = require('react');
-var NotesList = require('./NotesList');
+import React from 'react';
+const NotesList = require('./NotesList');
 import AddNote from './addNote';
 
-var Notes = React.createClass({
-  propTypes: {
-    username: React.PropTypes.string.isRequired,
-    notes: React.PropTypes.array.isRequired,
-    addNote: React.PropTypes.func.isRequired
-  },
-  render: function(){
-    console.log(this.props.notes);
+export default class Notes extends React.Component {
+
+  render() {
     return (
       <div>
         <h3> Notes for {this.props.username}</h3>
@@ -18,6 +13,10 @@ var Notes = React.createClass({
       </div>
     )
   }
-});
+}
 
-module.exports = Notes;
+Notes.propTypes = {
+  username: React.PropTypes.string.isRequired,
+  notes: React.PropTypes.array.isRequired,
+  addNote: React.PropTypes.func.isRequired,
+};
