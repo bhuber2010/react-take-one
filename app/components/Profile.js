@@ -3,12 +3,12 @@ import Router from 'react-router';
 var Repos = require('./Github/Repos');
 var UserProfile = require('./Github/UserProfile');
 import Notes from './Notes/Notes';
-import ReactFireMixin from 'reactfire';
-import Firebase from 'firebase';
 import getGithubInfo from '../utils/helpers';
+import Rebase from 're-base';
+
+const base = Rebase.createClass('https://react-github-notez.firebaseio.com/');
 
 const Profile = React.createClass({
-  mixins: [ReactFireMixin],
   getInitialState: function(){
     return {
       notes: [],
@@ -17,20 +17,21 @@ const Profile = React.createClass({
     }
   },
   componentDidMount: function(){
-    this.ref = new Firebase('https://react-github-notez.firebaseio.com/');
+    this.ref = base.syncState(this.props.params.username, {
+      context: this,
+      state: 'notes',
+      asArray: true
+    })
     this.init(this.props.params.username);
   },
   componentWillReceiveProps: function(newProps){
-    this.unbind('notes');
+    base.removeBinding(this.ref);
     this.init(newProps.params.username);
   },
   componentWillUnmount: function(){
-    this.unbind('notes');
+    base.removeBinding(this.ref);
   },
   init: function(username) {
-    var childRef = this.ref.child(username);
-    this.bindAsArray(childRef, 'notes');
-
     getGithubInfo(username)
       .then(function(data){
         this.setState({
@@ -40,7 +41,9 @@ const Profile = React.createClass({
       }.bind(this))
   },
   handleAddNote: function(newNote){
-    this.ref.child(this.props.params.username).child(this.state.notes.length).set(newNote)
+    base.push(this.props.params.username, {
+      data: newNote
+    })
   },
   render: function(){
     console.log(this.props);

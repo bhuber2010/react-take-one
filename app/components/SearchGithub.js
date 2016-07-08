@@ -1,5 +1,5 @@
 import React from 'react';
-import Router from 'react-router';
+import {Router, browserHistory} from 'react-router';
 
 const SearchGithub = React.createClass({
 
@@ -7,20 +7,21 @@ const SearchGithub = React.createClass({
     this.usernameRef = ref;
   },
 
-  handleSubmit: function(){
+  handleSubmit: function(e){
+    e.preventDefault();
     const username = this.usernameRef.value;
     this.usernameRef.value = '';
-    this.context.router.push("/profile/" + username);
+    browserHistory.push("/profile/" + username);
   },
 
   render: function(){
     return (
       <div className="col-sm-12">
         <form onSubmit={this.handleSubmit}>
-          <div className="form-group col-sm-9">
+          <div className="form-group col-sm-7">
             <input type="text" className="form-control" ref={this.getRef} />
           </div>
-          <div className="form-group col-sm-3">
+          <div className="form-group col-sm-4">
             <button type="submit" className="btn btn-block btn-primary">Search Github</button>
           </div>
         </form>
@@ -28,9 +29,5 @@ const SearchGithub = React.createClass({
     )
   }
 });
-
-SearchGithub.contextTypes = {
-  router: React.PropTypes.object.isRequired
-};
 
 module.exports = SearchGithub;
