@@ -4,9 +4,12 @@ var validate = require('webpack-validator');
 
 module.exports = validate({
   devtool: 'eval',
+  resolve: {
+    extensions: ["", ".webpack.js", ".web.js", ".js"]
+  },
   entry: [
     'react-hot-loader/patch',
-    'webpack-dev-server/client?http://localhost:3000',
+    'webpack-dev-server/client?http://127.0.0.1/:3000',
     'webpack/hot/only-dev-server', // "only" prevents reload on syntax errors
     "./app/index"
   ],
