@@ -46,7 +46,7 @@ const Profile = React.createClass({
     })
   },
   render: function(){
-    console.log(this.props);
+    // console.log(this.props);
     return (
       <div className="row">
         <div className="col-md-4">
