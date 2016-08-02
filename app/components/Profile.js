@@ -45,6 +45,12 @@ const Profile = React.createClass({
       data: newNote
     })
   },
+  handleRemoveNote: function(note){
+    this.state.notes.splice(note.index, 1)
+    this.setState({
+      notes: this.state.notes
+    })
+  },
   render: function(){
     // console.log(this.props);
     return (
@@ -59,7 +65,8 @@ const Profile = React.createClass({
           <Notes
             username={this.props.params.username}
             notes={this.state.notes}
-            addNote={this.handleAddNote}/>
+            addNote={this.handleAddNote}
+            removeNote={this.handleRemoveNote}/>
         </div>
       </div>
     )

@@ -9,7 +9,9 @@ export default class Notes extends React.Component {
       <div>
         <h3> Notes for {this.props.username}</h3>
         <AddNote username={this.props.username} addNote={this.props.addNote} />
-        <NotesList notes={this.props.notes} />
+        <NotesList
+          notes={this.props.notes}
+          handleRemoveNote={this.props.removeNote}/>
       </div>
     )
   }

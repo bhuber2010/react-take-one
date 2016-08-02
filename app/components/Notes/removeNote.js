@@ -3,15 +3,12 @@ import React from 'react';
 export default class RemoveNote extends React.Component {
   constructor(){
     super();
-  }
-
-  componentDidMount() {
-    this.noteObj = this.props.note;
-    console.log(this.props.note);
+    this.removeNote = this.removeNote.bind(this)
   }
 
   removeNote(e) {
-    console.log(this.props);
+    // console.log(this.props.note);
+    this.props.removeNote(this.props.note);
   }
 
   render() {

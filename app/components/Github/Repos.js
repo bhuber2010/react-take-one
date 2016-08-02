@@ -7,7 +7,7 @@ var Repos = React.createClass({
   },
   render: function(){
     console.log('Repos: ', this.props.repos);
-    var repos =this.props.repos.map(function(repo, i){
+    var repos = this.props.repos.map(function(repo, i) {
       return (
         <li className="list-group-item" key={i}>
           {repo.html_url && <h4><a href={repo.html_url}>{repo.name}</a></h4>}

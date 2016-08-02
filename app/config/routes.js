@@ -3,9 +3,7 @@ import Main from '../components/Main';
 const Home = require('../components/Home');
 const Profile = require('../components/Profile');
 import Sliders from '../components/Random/Sliders';
-const Router = require('react-router');
-const Route = Router.Route;
-const IndexRoute = Router.IndexRoute;
+import { Route, IndexRoute } from './routeImport';
 
 export default (
   <Route path="/" component={Main}>
